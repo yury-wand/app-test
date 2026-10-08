@@ -1,0 +1,15 @@
+name: Connector test
+on:
+  workflow_dispatch:
+    inputs:
+      fail:
+        description: Set to "true" to make the job fail
+        required: false
+        default: "false"
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "fail=${{ inputs.fail }}"
+      - run: sleep 45
+      - run: test "${{ inputs.fail }}" != "true"
